@@ -1,0 +1,1837 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Naz's MOT Garage — MOT, Service &amp; Repairs</title>
+    <meta
+      name="description"
+      content="Naz's MOT Garage — MOT testing, servicing, brakes, tyres and repairs. Over 10 years experience, DVSA approved. MOT's £30."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Work+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.0/css/all.min.css"
+    />
+    <link rel="shortcut icon" href="logo2.png" type="image/x-icon" />
+    <style>
+      :root {
+        --asphalt: #14171a;
+        --asphalt-2: #1d2124;
+        --red: #d8232a;
+        --red-dark: #9e1a1f;
+        --mot-blue: #0057a8;
+        --plate-yellow: #f4c60d;
+        --paper: #ece8e1;
+        --steel: #8b929a;
+        --teal: #2f8f7a;
+        --line: rgba(236, 232, 225, 0.12);
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        background: var(--asphalt);
+        color: var(--paper);
+        font-family: "Work Sans", sans-serif;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+      h1,
+      h2,
+      h3,
+      .display {
+        font-family: "Oswald", sans-serif;
+        text-transform: uppercase;
+        letter-spacing: 0.01em;
+      }
+      .mono {
+        font-family: "JetBrains Mono", monospace;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      img {
+        display: block;
+        max-width: 100%;
+      }
+      .wrap {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          animation-duration: 0.001ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.001ms !important;
+          scroll-behavior: auto !important;
+        }
+      }
+
+      /* hazard divider */
+      .hazard {
+        height: 14px;
+        background: repeating-linear-gradient(
+          -45deg,
+          var(--plate-yellow) 0 22px,
+          #14171a 22px 44px
+        );
+        background-size: 62px 14px;
+        animation: hazard-march 3.2s linear infinite;
+      }
+      @keyframes hazard-march {
+        from {
+          background-position: 0 0;
+        }
+        to {
+          background-position: 62px 0;
+        }
+      }
+
+      /* generic scroll-reveal */
+      .reveal {
+        opacity: 0;
+        transform: translateY(26px);
+        transition:
+          opacity 0.7s ease,
+          transform 0.7s ease;
+      }
+      .reveal.in {
+        opacity: 1;
+        transform: none;
+      }
+
+      /* hero load-in */
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+      .hero-content .eyebrow {
+        animation: fadeUp 0.8s ease both;
+      }
+      .hero-content h1 {
+        animation: fadeUp 0.8s ease 0.12s both;
+      }
+      .hero-content p.lede {
+        animation: fadeUp 0.8s ease 0.24s both;
+      }
+      .hero-content .hero-plates {
+        animation: fadeUp 0.8s ease 0.36s both;
+      }
+      .mot-badge {
+        animation: fadeUp 0.8s ease 0.5s both;
+      }
+
+      /* number plate signature element */
+      .plate {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: var(--plate-yellow);
+        color: #141414;
+        border: 2.5px solid #141414;
+        border-radius: 5px;
+        padding: 8px 16px;
+        font-family: "JetBrains Mono", monospace;
+        font-weight: 700;
+        font-size: 1.4rem;
+        letter-spacing: 0.06em;
+        box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.35);
+        white-space: nowrap;
+      }
+      .plate .flag {
+        background: var(--mot-blue);
+        color: #fff;
+        font-size: 0.55rem;
+        font-family: "Work Sans", sans-serif;
+        font-weight: 700;
+        letter-spacing: 0;
+        border-radius: 2px;
+        padding: 2px 4px;
+        line-height: 1.1;
+        align-self: stretch;
+        display: flex;
+        align-items: center;
+      }
+      .plate.small {
+        font-size: 1rem;
+        padding: 6px 12px;
+      }
+
+      /* NAV */
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        background: rgba(20, 23, 26, 0.92);
+        backdrop-filter: blur(6px);
+        border-bottom: 1px solid var(--line);
+      }
+      nav.wrap {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 74px;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-family: "Oswald";
+        font-weight: 600;
+        font-size: 1.05rem;
+        text-transform: uppercase;
+      }
+      .brand img {
+        height: 42px;
+        width: 45px;
+        border-radius: 4px;
+        object-fit: cover;
+      }
+      .navlinks {
+        display: flex;
+        gap: 28px;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        font-weight: 600;
+      }
+      .navlinks a {
+        opacity: 0.8;
+        transition:
+          opacity 0.2s,
+          color 0.2s;
+        padding: 4px 0;
+        border-bottom: 2px solid transparent;
+      }
+      .navlinks a:hover {
+        opacity: 1;
+        border-color: var(--red);
+      }
+      .navcall {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+      .btn-call {
+        background: var(--red);
+        color: #fff;
+        font-weight: 700;
+        font-size: 0.85rem;
+        padding: 10px 18px;
+        border-radius: 4px;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        border: 2px solid var(--red);
+        transition:
+          background 0.2s,
+          color 0.2s;
+      }
+      .btn-call:hover {
+        background: transparent;
+        color: var(--red);
+      }
+      .navburger {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+        background: none;
+        border: none;
+      }
+      .navburger span {
+        width: 26px;
+        height: 2px;
+        background: var(--paper);
+        transition:
+          transform 0.3s,
+          opacity 0.3s;
+      }
+
+      /* HERO */
+      .hero {
+        position: relative;
+        min-height: 95vh;
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+        text-align: center;
+      }
+      .hero video,
+      .hero .heroimg {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: saturate(0.9) contrast(1.05);
+      }
+      .hero::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(
+            180deg,
+            rgba(20, 23, 26, 0.55) 0%,
+            rgba(20, 23, 26, 0.55) 30%,
+            rgba(20, 23, 26, 0.97) 92%
+          ),
+          linear-gradient(
+            90deg,
+            rgba(20, 23, 26, 0.75) 0%,
+            rgba(20, 23, 26, 0.15) 55%
+          );
+      }
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        padding: 60px 10px 70px;
+      }
+      .eyebrow {
+        display: inline-block;
+        font-family: "JetBrains Mono";
+        font-size: 0.78rem;
+        letter-spacing: 0.18em;
+        color: var(--plate-yellow);
+        text-transform: uppercase;
+        margin-bottom: 18px;
+        font-weight: 700;
+      }
+      .hero h1 {
+        font-size: clamp(2.6rem, 6.5vw, 5.2rem);
+        line-height: 0.98;
+        font-weight: 700;
+        margin-bottom: 20px;
+        max-width: 92ch;
+        letter-spacing: 5px;
+        text-align: center;
+        letter-spacing: 5px;
+      }
+      .hero h1 span {
+        color: var(--red);
+      }
+      .hero p.lede {
+        max-width: 100%;
+        color: var(--paper);
+        opacity: 0.85;
+        font-size: 1.08rem;
+        line-height: 1.55;
+        margin-bottom: 34px;
+        letter-spacing: 2px;
+      }
+      .hero-plates {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        align-items: center;
+        justify-content: center;
+      }
+      .plate-label {
+        font-family: "JetBrains Mono";
+        font-size: 0.68rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--steel);
+        display: block;
+        margin-bottom: 6px;
+      }
+
+      /* MOT strip badge (blue triangle inspired) */
+      .mot-badge {
+        position: absolute;
+        top: 26px;
+        right: 24px;
+        z-index: 3;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--mot-blue);
+        color: #fff;
+        padding: 10px 14px;
+        border-radius: 4px;
+        font-family: "Oswald";
+        font-weight: 600;
+        font-size: 0.78rem;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+      }
+      .mot-badge svg {
+        width: 20px;
+        height: 20px;
+      }
+
+      /* SECTION generic */
+      section {
+        padding: 88px 0;
+      }
+      .section-head {
+        margin-bottom: 48px;
+        max-width: 640px;
+      }
+      .section-head .eyebrow {
+        color: var(--red);
+      }
+      .section-head h2 {
+        font-size: clamp(2rem, 4vw, 2.8rem);
+        line-height: 1.05;
+      }
+      .section-head p {
+        color: var(--steel);
+        margin-top: 14px;
+        font-size: 1rem;
+        line-height: 1.6;
+      }
+
+      /* ABOUT */
+      .about {
+        background: var(--asphalt-2);
+      }
+      .about-grid {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 60px;
+        align-items: start;
+      }
+      .about-text p {
+        color: var(--paper);
+        opacity: 0.85;
+        line-height: 1.75;
+        margin-bottom: 18px;
+        font-size: 1.02rem;
+      }
+      .stat-row {
+        display: flex;
+        gap: 36px;
+        margin-top: 30px;
+        flex-wrap: wrap;
+      }
+      .stat b {
+        font-family: "Oswald";
+        font-size: 2.2rem;
+        color: var(--red);
+        display: block;
+        line-height: 1;
+      }
+      .stat span {
+        font-size: 0.78rem;
+        color: var(--steel);
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+      }
+      .tick-list {
+        list-style: none;
+        display: grid;
+        gap: 12px;
+      }
+      .tick-list li {
+        display: flex;
+        gap: 12px;
+        align-items: flex-start;
+        font-size: 0.95rem;
+        color: var(--paper);
+        opacity: 0.9;
+      }
+      .tick-list li::before {
+        content: "✓";
+        color: var(--mot-blue);
+        font-weight: 700;
+        background: rgba(0, 87, 168, 0.15);
+        width: 22px;
+        height: 22px;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: none;
+        font-size: 0.85rem;
+      }
+      .badge-card {
+        background: var(--asphalt);
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        padding: 26px;
+      }
+      .badge-card h3 {
+        font-size: 0.95rem;
+        letter-spacing: 0.04em;
+        margin-bottom: 16px;
+        color: var(--steel);
+      }
+
+      /* SERVICES */
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 14px;
+        padding: 0 10px;
+      }
+      .service-cell {
+        position: relative;
+        border-radius: 12px;
+        padding: 26px 22px 22px;
+        border: 1px solid var(--line);
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        min-height: 180px;
+        justify-content: flex-end;
+        opacity: 0;
+        transition:
+          opacity 0.6s ease,
+          transform 0.3s ease,
+          box-shadow 0.3s ease,
+          border-color 0.3s ease;
+      }
+      .service-cell.in {
+        opacity: 1;
+      }
+      .service-cell:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.35);
+      }
+      .service-cell .num {
+        font-family: "JetBrains Mono";
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        opacity: 0.75;
+      }
+      .service-cell h3 {
+        font-size: 1.08rem;
+        letter-spacing: 0.01em;
+        margin-top: 2px;
+      }
+      .service-cell p {
+        font-size: 0.84rem;
+        line-height: 1.5;
+        color: var(--paper);
+        opacity: 0.7;
+      }
+      .service-cell.c1 {
+        background: linear-gradient(
+          155deg,
+          rgba(216, 35, 42, 0.18),
+          var(--asphalt) 72%
+        );
+      }
+      .service-cell.c1:hover {
+        border-color: rgba(216, 35, 42, 0.5);
+      }
+      .service-cell.c1 .num {
+        color: var(--red);
+      }
+      .service-cell.c2 {
+        background: linear-gradient(
+          155deg,
+          rgba(0, 87, 168, 0.2),
+          var(--asphalt) 72%
+        );
+      }
+      .service-cell.c2:hover {
+        border-color: rgba(0, 87, 168, 0.55);
+      }
+      .service-cell.c2 .num {
+        color: #4fa3ff;
+      }
+      .service-cell.c3 {
+        background: linear-gradient(
+          155deg,
+          rgba(244, 198, 13, 0.18),
+          var(--asphalt) 72%
+        );
+      }
+      .service-cell.c3:hover {
+        border-color: rgba(244, 198, 13, 0.5);
+      }
+      .service-cell.c3 .num {
+        color: var(--plate-yellow);
+      }
+      .service-cell.c4 {
+        background: linear-gradient(
+          155deg,
+          rgba(47, 143, 122, 0.22),
+          var(--asphalt) 72%
+        );
+      }
+      .service-cell.c4:hover {
+        border-color: rgba(47, 143, 122, 0.55);
+      }
+      .service-cell.c4 .num {
+        color: #4fd6b5;
+      }
+
+      /* PRICE STRIP */
+      .price-strip {
+        background: var(--red);
+        color: #fff;
+        padding: 46px 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 26px;
+        flex-wrap: wrap;
+        text-align: center;
+      }
+      .price-strip .plate {
+        font-size: 1.9rem;
+        padding: 12px 22px;
+      }
+      .price-strip p {
+        font-family: "Oswald";
+        text-transform: uppercase;
+        font-size: 1.2rem;
+        letter-spacing: 0.02em;
+      }
+
+      /* GALLERY */
+      .gallery {
+        background: var(--asphalt-2);
+      }
+      .gallery-head-flex {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        gap: 40px;
+        flex-wrap: wrap;
+        margin-bottom: 40px;
+      }
+      .filter-chips {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      .chip {
+        font-family: "JetBrains Mono";
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        padding: 9px 16px;
+        border-radius: 30px;
+        border: 1px solid var(--line);
+        color: var(--steel);
+        cursor: pointer;
+        background: transparent;
+        transition: all 0.25s;
+      }
+      .chip:hover {
+        border-color: var(--paper);
+        color: var(--paper);
+      }
+      .chip.active {
+        background: var(--red);
+        border-color: var(--red);
+        color: #fff;
+      }
+      .gal-masonry {
+        columns: 4 220px;
+        column-gap: 14px;
+        padding: 0 10px;
+      }
+      .gal-item {
+        break-inside: avoid;
+        margin-bottom: 14px;
+        position: relative;
+        border-radius: 14px;
+        overflow: hidden;
+        display: block;
+        opacity: 0;
+        transform: translateY(30px) scale(0.97);
+        transition:
+          opacity 0.6s ease,
+          transform 0.6s ease;
+      }
+      .gal-item.in {
+        opacity: 1;
+        transform: none;
+      }
+      .gal-item.hide {
+        display: none;
+      }
+      .gal-item img {
+        width: 100%;
+        display: block;
+        transition:
+          transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1),
+          filter 0.5s ease;
+      }
+      .gal-item:hover img {
+        transform: scale(1.08) rotate(-0.4deg);
+        filter: saturate(1.15);
+      }
+      .gal-item .tag {
+        position: absolute;
+        top: 12px;
+        left: 12px;
+        background: rgba(20, 23, 26, 0.78);
+        backdrop-filter: blur(4px);
+        color: var(--plate-yellow);
+        font-family: "JetBrains Mono";
+        font-size: 0.6rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        padding: 5px 10px;
+        border-radius: 20px;
+        z-index: 2;
+      }
+      .gal-item .cap {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        padding: 26px 16px 14px;
+        background: linear-gradient(
+          180deg,
+          transparent,
+          rgba(10, 11, 12, 0.94)
+        );
+        color: #fff;
+        font-family: "Oswald";
+        font-size: 0.9rem;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+        transform: translateY(10px);
+        opacity: 0;
+        transition:
+          transform 0.35s ease,
+          opacity 0.35s ease;
+      }
+      .gal-item:hover .cap {
+        transform: translateY(0);
+        opacity: 1;
+      }
+
+      /* VIDEO CLIP */
+      .clip-section {
+        padding: 90px 0;
+      }
+      .clip-flex {
+        display: flex;
+        gap: 56px;
+        align-items: center;
+      }
+      .phone-frame {
+        flex: none;
+        width: 230px;
+        height: 410px;
+        border-radius: 26px;
+        border: 6px solid #2a2e32;
+        background: #000;
+        overflow: hidden;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        position: relative;
+      }
+      .phone-frame video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .phone-frame::before {
+        content: "";
+        position: absolute;
+        top: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60px;
+        height: 6px;
+        background: #2a2e32;
+        border-radius: 4px;
+        z-index: 2;
+      }
+      .clip-text h2 {
+        font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+        margin-bottom: 16px;
+      }
+      .clip-text p {
+        color: var(--steel);
+        max-width: 42ch;
+        line-height: 1.65;
+        margin-bottom: 26px;
+      }
+      .social-row {
+        display: flex;
+        gap: 24px;
+      }
+      .social-pill {
+        display: flex;
+        align-items: center;
+        border: 1px solid var(--line);
+        padding: 10px 16px;
+        border-radius: 30px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        transition:
+          border-color 0.2s,
+          background 0.2s;
+      }
+      .social-pill:hover {
+        border-color: var(--red);
+        background: rgba(216, 35, 42, 0.08);
+      }
+      .pill2 {
+        border: none;
+        font-size: 1.2rem;
+        padding: 0;
+        transition: all 0.3s ease-in-out;
+      }
+      .pill2:hover {
+        color: #c74b4f;
+      }
+
+      /* REVIEWS */
+      .reviews {
+        background: var(--asphalt-2);
+        overflow: hidden;
+      }
+      .stars {
+        color: var(--plate-yellow);
+        letter-spacing: 2px;
+        font-size: 0.95rem;
+        margin-bottom: 2px;
+      }
+      .review-track {
+        display: flex;
+        gap: 20px;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        padding: 10px 4px 26px;
+        -webkit-overflow-scrolling: touch;
+        mask-image: linear-gradient(
+          90deg,
+          transparent 0,
+          #000 8%,
+          #000 92%,
+          transparent 100%
+        );
+        -webkit-mask-image: linear-gradient(
+          90deg,
+          transparent 0,
+          #000 8%,
+          #000 92%,
+          transparent 100%
+        );
+      }
+      .review-track::-webkit-scrollbar {
+        height: 6px;
+      }
+      .review-track::-webkit-scrollbar-thumb {
+        background: var(--line);
+        border-radius: 4px;
+      }
+      .review-card {
+        background: var(--asphalt);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 28px 26px;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        flex: 0 0 320px;
+        scroll-snap-align: center;
+        transition: opacity 0.2s linear;
+      }
+      .review-card p {
+        font-size: 0.92rem;
+        line-height: 1.6;
+        color: var(--paper);
+        opacity: 0.85;
+        flex: 1;
+      }
+      .review-card .who-row {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-top: auto;
+      }
+      .review-card .who-row img {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid var(--line);
+        flex: none;
+      }
+      .review-card .who b {
+        display: block;
+        font-family: "Oswald";
+        font-size: 0.86rem;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+      }
+      .review-card .who span {
+        font-size: 0.7rem;
+        color: var(--steel);
+      }
+      .scroll-hint {
+        text-align: center;
+        font-family: "JetBrains Mono";
+        font-size: 0.68rem;
+        color: var(--steel);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        margin-top: 0;
+      }
+      @media (max-width: 880px) {
+        .review-card {
+          flex-basis: 82vw;
+        }
+      }
+
+      /* CONTACT */
+      .contact {
+        padding: 100px 0;
+      }
+      .contact-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        align-items: center;
+      }
+      .contact-info h2 {
+        font-size: clamp(2rem, 4vw, 2.8rem);
+        margin-bottom: 20px;
+      }
+      .contact-info p.lede {
+        color: var(--steel);
+        max-width: 40ch;
+        line-height: 1.6;
+        margin-bottom: 32px;
+      }
+      .contact-lines {
+        display: grid;
+        gap: 18px;
+        margin-bottom: 32px;
+      }
+      .contact-line {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+      .contact-line .k {
+        font-family: "JetBrains Mono";
+        font-size: 0.7rem;
+        color: var(--steel);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        width: 70px;
+        flex: none;
+      }
+      .contact-line a,
+      .contact-line span.v {
+        font-size: 1.05rem;
+        font-weight: 600;
+      }
+      .contact-form-panel {
+        background: var(--asphalt-2);
+        border: 1px solid #c74b4f;
+        border-radius: 12px;
+        padding: 40px;
+        background-image: url("naz11.jpg");
+        background-size: cover;
+        background-position: center;
+        position: relative;
+        min-height: 340px;
+      }
+      .contact-form-panel::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(20, 23, 26, 0.88);
+        backdrop-filter: blur(4px);
+        border-radius: 12px;
+      }
+      .contact-form-panel .inner {
+        position: relative;
+        z-index: 2;
+      }
+      .contact-form {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        width: 100%;
+      }
+      .contact-form input,
+      .contact-form textarea {
+        background: rgba(20, 23, 26, 0.6);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        color: var(--paper);
+        padding: 14px 18px;
+        border-radius: 6px;
+        font-family: "Work Sans", sans-serif;
+        font-size: 0.95rem;
+        transition:
+          border-color 0.3s,
+          background 0.3s;
+        width: 100%;
+      }
+      .contact-form input::placeholder,
+      .contact-form textarea::placeholder {
+        color: rgba(236, 232, 225, 0.5);
+      }
+      .contact-form input:focus,
+      .contact-form textarea:focus {
+        outline: none;
+        border-color: var(--red);
+        background: rgba(20, 23, 26, 0.9);
+      }
+      .contact-form textarea {
+        resize: vertical;
+        min-height: 100px;
+      }
+      .contact-form .btn-submit {
+        background: var(--red);
+        color: #fff;
+        font-family: "Work Sans", sans-serif;
+        font-weight: 700;
+        font-size: 0.95rem;
+        padding: 14px 24px;
+        border-radius: 6px;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        border: 2px solid var(--red);
+        cursor: pointer;
+        transition:
+          background 0.2s,
+          color 0.2s;
+        align-self: flex-start;
+      }
+      .contact-form .btn-submit:hover {
+        background: transparent;
+        color: var(--red);
+      }
+
+      footer {
+        border-top: 1px solid var(--line);
+        padding: 40px 0;
+      }
+      .footer-flex {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+      .footer-flex .brand img {
+        height: 34px;
+      }
+      .footer-flex p {
+        color: var(--steel);
+        font-size: 0.82rem;
+      }
+
+      @media (max-width: 880px) {
+        .navlinks {
+          gap: 10px;
+          font-size: 0.7rem;
+          letter-spacing: 0;
+        }
+        .about-grid,
+        .contact-grid,
+        .clip-flex {
+          grid-template-columns: 1fr;
+        }
+        .services-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .gal-masonry {
+          columns: 2 160px;
+        }
+        .clip-flex {
+          flex-direction: column;
+        }
+        .hero .heroimg {
+          height: 100%;
+        }
+      }
+      @media (max-width: 750px) {
+        .navlinks {
+          display: none;
+        }
+        header.menu-active .navlinks {
+          display: flex;
+          flex-direction: column;
+          position: absolute;
+          top: 74px;
+          left: 0;
+          width: 100%;
+          background: rgba(20, 23, 26, 0.98);
+          backdrop-filter: blur(10px);
+          padding: 30px 24px;
+          gap: 24px;
+          border-bottom: 1px solid var(--line);
+          box-shadow: 0 14px 28px rgba(0, 0, 0, 0.5);
+          text-align: center;
+          font-size: 1.1rem;
+        }
+        .navburger {
+          display: flex;
+          z-index: 100;
+        }
+        header.menu-active .navburger span:nth-child(1) {
+          transform: translateY(7px) rotate(45deg);
+        }
+        header.menu-active .navburger span:nth-child(2) {
+          opacity: 0;
+        }
+        header.menu-active .navburger span:nth-child(3) {
+          transform: translateY(-7px) rotate(-45deg);
+        }
+        .btn-call {
+          padding: 8px 12px;
+          font-size: 0.65rem;
+          border-radius: 8px;
+        }
+        .hero .heroimg {
+          height: 100%;
+        }
+        .contact-form-panel {
+          padding: 24px;
+        }
+        .contact-form > div {
+          grid-template-columns: 1fr !important;
+        }
+        .wrap {
+          padding: 0 12px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav class="wrap">
+        <a class="brand" href="#top"
+          ><img src="logo2.png" alt="Naz's MOT Garage logo" />Naz's MOT</a
+        >
+        <div class="navlinks">
+          <a href="#about">About</a>
+          <a href="#services">Services</a>
+          <a href="#gallery">Gallery</a>
+          <a href="#reviews">Reviews</a>
+          <a href="#contact">Find Us</a>
+        </div>
+        <div
+          class="nav-actions"
+          style="display: flex; align-items: center; gap: 20px"
+        >
+          <div class="navcall">
+            <a class="btn-call" href="tel:+441617404488"
+              ><i class="fa-solid fa-phone"></i> 0161 740 4488</a
+            >
+          </div>
+          <button class="navburger" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <div id="top" class="hero">
+      <video
+        class="heroimg"
+        autoplay
+        muted
+        loop
+        playsinline
+        poster="headVideo.mp4"
+      >
+        <source src="headVideo.mp4" type="video/mp4" />
+      </video>
+      <div class="mot-badge">
+        <svg viewBox="0 0 24 24" fill="none">
+          <path d="M12 2L2 20H22L12 2Z" fill="#fff" />
+          <path d="M12 2L2 20H22L12 2Z" stroke="#fff" stroke-width="0" />
+        </svg>
+        DVSA Approved Testing
+      </div>
+      <div class="wrap hero-content">
+        <span class="eyebrow"
+          >// Est. local &nbsp;·&nbsp; Family run &nbsp;·&nbsp; 10+ years</span
+        >
+        <h1>NAZ's MOTs <span>done properly.</span></h1>
+        <p class="lede" style="letter-spacing: 2px">
+          M.O.T testing and vehicle servicing carried out to a very high
+          standard, approved by the DVSA. Brakes, tyres, exhausts, batteries and
+          full repairs — all under one roof.
+        </p>
+        <div class="hero-plates">
+          <div>
+            <span class="plate-label">MOT price</span>
+            <div class="plate">£30<span class="flag">MOT</span></div>
+          </div>
+          <div>
+            <span class="plate-label">Book in</span>
+            <a class="plate small" href="tel:+441617404488">0161 740 4488</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="hazard"></div>
+
+    <section class="about" id="about">
+      <div class="wrap about-grid">
+        <div class="about-text reveal">
+          <span class="eyebrow">About the garage</span>
+          <h2
+            style="margin-bottom: 22px; font-size: clamp(1.9rem, 3.5vw, 2.4rem)"
+          >
+            Over a decade keeping local cars road-legal
+          </h2>
+          <p>
+            With over 10 years experience in the mechanical industry and M.O.T
+            testing, we're approved by the Motor Vehicle Testing Authorisation.
+            Whether it's your annual MOT or a full service, the job's done
+            right, explained plainly, and your car is kept secure while it's
+            with us.
+          </p>
+          <p>
+            Waiting area with tea and biscuits on hand, plus a viewing area so
+            you can watch your vehicle being tested — no black boxes, no
+            guesswork.
+          </p>
+          <div class="stat-row">
+            <div class="stat"><b>10+</b><span>Years Experience</span></div>
+            <div class="stat"><b>£30</b><span>MOT Test</span></div>
+            <div class="stat"><b>DVSA</b><span>Approved Testing</span></div>
+          </div>
+        </div>
+        <div class="badge-card reveal">
+          <h3>ACCESSIBILITY &amp; VISIT</h3>
+          <ul class="tick-list">
+            <li>Wheelchair accessible entrance</li>
+            <li>Wheelchair accessible parking lot</li>
+            <li>Onsite services — drop off and wait</li>
+          </ul>
+          <h3 style="margin-top: 26px">PAYMENTS</h3>
+          <ul class="tick-list">
+            <li>Cash</li>
+            <li>Credit &amp; debit cards</li>
+            <li>NFC mobile payments</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="eyebrow">// What we work on</span>
+          <h2>Servicing &amp; repairs</h2>
+          <p>
+            New and part-worn tyres available, plus secure vehicle parking while
+            your car's with us.
+          </p>
+        </div>
+      </div>
+      <div class="wrap" style="padding: 0">
+        <div class="services-grid">
+          <div class="service-cell reveal c1">
+            <span class="num">01</span>
+            <h3>MOT Testing</h3>
+            <p>
+              DVSA-approved test, done while you wait, with the reasons
+              explained in plain English.
+            </p>
+          </div>
+          <div class="service-cell reveal c2">
+            <span class="num">02</span>
+            <h3>Full Servicing</h3>
+            <p>
+              Interim or full service — fluids, filters and a proper once-over
+              on the essentials.
+            </p>
+          </div>
+          <div class="service-cell reveal c3">
+            <span class="num">03</span>
+            <h3>Brakes</h3>
+            <p>
+              Pads, discs and calipers checked, worn parts replaced before they
+              become a problem.
+            </p>
+          </div>
+          <div class="service-cell reveal c4">
+            <span class="num">04</span>
+            <h3>Suspension &amp; Shocks</h3>
+            <p>
+              Shock absorbers and suspension components replaced to keep the
+              ride — and the MOT — sound.
+            </p>
+          </div>
+          <div class="service-cell reveal c1">
+            <span class="num">05</span>
+            <h3>Exhausts</h3>
+            <p>
+              Exhaust systems inspected and repaired, from a blown section to a
+              full replacement.
+            </p>
+          </div>
+          <div class="service-cell reveal c2">
+            <span class="num">06</span>
+            <h3>Batteries &amp; Alternators</h3>
+            <p>
+              Tested and replaced on the spot, so a flat morning doesn't turn
+              into a flat week.
+            </p>
+          </div>
+          <div class="service-cell reveal c3">
+            <span class="num">07</span>
+            <h3>Starter Motors</h3>
+            <p>
+              Won't turn over? We diagnose and swap starter motors without the
+              guesswork.
+            </p>
+          </div>
+          <div class="service-cell reveal c4">
+            <span class="num">08</span>
+            <h3>Radiators</h3>
+            <p>
+              Cooling system checks and radiator replacement before overheating
+              does real damage.
+            </p>
+          </div>
+          <div class="service-cell reveal c1">
+            <span class="num">09</span>
+            <h3>New &amp; Part-Worn Tyres</h3>
+            <p>A full range in stock, fitted and balanced while you wait.</p>
+          </div>
+          <div class="service-cell reveal c2">
+            <span class="num">10</span>
+            <h3>Catalyst Testing</h3>
+            <p>
+              Emissions and catalyst checks carried out on-site as part of your
+              test.
+            </p>
+          </div>
+          <div class="service-cell reveal c3">
+            <span class="num">11</span>
+            <h3>Diesel Testing</h3>
+            <p>
+              Diesel-specific MOT testing, smoke and emissions checked to
+              standard.
+            </p>
+          </div>
+          <div class="service-cell reveal c4">
+            <span class="num">12</span>
+            <h3>Secure Overnight Parking</h3>
+            <p>
+              Can't collect same day? Your car's kept locked up and safe until
+              you can.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="price-strip">
+      <div class="plate">£30<span class="flag">MOT</span></div>
+      <p>New tyres available now — ask in branch</p>
+    </div>
+
+    <section class="gallery" id="gallery">
+      <div class="wrap">
+        <div class="gallery-head-flex">
+          <div class="section-head reveal" style="margin-bottom: 0">
+            <span class="eyebrow">// Round the workshop</span>
+            <h2>The garage &amp; the gurus</h2>
+            <p>
+              Signage, the shop floor, the fleet, and the mural that ties it all
+              together.
+            </p>
+          </div>
+          <div class="filter-chips">
+            <button class="chip active" data-filter="all">All</button>
+            <button class="chip" data-filter="storefront">Storefront</button>
+            <button class="chip" data-filter="workshop">Workshop</button>
+            <button class="chip" data-filter="mural">Mural</button>
+            <button class="chip" data-filter="fleet">Fleet</button>
+          </div>
+        </div>
+      </div>
+      <div class="wrap" style="padding: 0">
+        <div class="gal-masonry">
+          <div class="gal-item" data-cat="storefront">
+            <span class="tag">Signage</span
+            ><img
+              src="naz1.jpg"
+              alt="MOT testing station sign — diesels and catalysts tested"
+              loading="lazy"
+            /><span class="cap">DVSA test station</span>
+          </div>
+          <div class="gal-item" data-cat="storefront">
+            <span class="tag">Signage</span
+            ><img
+              src="naz2.jpg"
+              alt="MOT £30 board with new tyres in stock"
+              loading="lazy"
+            /><span class="cap">MOT's £30, tyres in stock</span>
+          </div>
+          <div class="gal-item" data-cat="mural">
+            <span class="tag">Mural</span
+            ><img
+              src="naz6_2.png"
+              alt="Naz's MOT mural being painted"
+              loading="lazy"
+            /><span class="cap">Mural in progress</span>
+          </div>
+          <div class="gal-item" data-cat="storefront">
+            <span class="tag">Storefront</span
+            ><img
+              src="naz3.jpg"
+              alt="AA-inspected shopfront, new tyres available"
+              loading="lazy"
+            /><span class="cap">AA-inspected shopfront</span>
+          </div>
+          <div class="gal-item" data-cat="workshop">
+            <span class="tag">Workshop</span
+            ><img
+              src="naz8.jpg"
+              alt="Car on the ramp inside the workshop"
+              loading="lazy"
+            /><span class="cap">On the ramp</span>
+          </div>
+          <div class="gal-item" data-cat="storefront">
+            <span class="tag">Storefront</span
+            ><img
+              src="naz4.jpg"
+              alt="Naz's MOT black and red frontage"
+              loading="lazy"
+            /><span class="cap">Front of house</span>
+          </div>
+          <div class="gal-item" data-cat="mural">
+            <span class="tag">Mural</span
+            ><img
+              src="naz10.png"
+              alt="The service gurus mural"
+              loading="lazy"
+            /><span class="cap">The service gurus</span>
+          </div>
+          <div class="gal-item" data-cat="fleet">
+            <span class="tag">Fleet</span
+            ><img
+              src="naz7.jpg"
+              alt="Van and car outside the garage"
+              loading="lazy"
+            /><span class="cap">On the trailer</span>
+          </div>
+          <div class="gal-item" data-cat="storefront">
+            <span class="tag">Storefront</span
+            ><img
+              src="naz5.jpg"
+              alt="Naz's MOT frontage, open for business"
+              loading="lazy"
+            /><span class="cap">Open for business</span>
+          </div>
+          <div class="gal-item" data-cat="workshop">
+            <span class="tag">Workshop</span
+            ><img
+              src="naz9.jpg"
+              alt="Oil drums and parts in the workshop"
+              loading="lazy"
+            /><span class="cap">Parts &amp; oils</span>
+          </div>
+          <!-- <div class="gal-item" data-cat="mural"><span class="tag">Mural</span><img src="naz11.jpg" alt="Stylised workshop wall art" loading="lazy"><span class="cap">Workshop wall art</span></div> -->
+        </div>
+      </div>
+    </section>
+
+    <section class="clip-section">
+      <div class="wrap clip-flex">
+        <div class="phone-frame">
+          <video autoplay muted loop playsinline>
+            <source src="videoplayback.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <div class="clip-text reveal">
+          <span class="eyebrow" style="color: var(--red)"
+            >// Fresh off the tools</span
+          >
+          <h2>Follow the work as it happens</h2>
+          <p>
+            From respray reveals to workshop shots, we post the jobs as they
+            come off the ramp. Give us a follow for a look behind the shutter.
+          </p>
+          <div class="social-row">
+            <a
+              class="social-pill"
+              href="https://www.facebook.com/nazsmot/"
+              target="_blank"
+              rel="noopener"
+              >Facebook</a
+            >
+            <a
+              class="social-pill"
+              href="https://www.instagram.com/nazsmotgarage/"
+              target="_blank"
+              rel="noopener"
+              >Instagram</a
+            >
+            <a
+              class="social-pill"
+              href="https://www.tiktok.com/@nazsmotgarage"
+              target="_blank"
+              rel="noopener"
+              >TikTok</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="reviews" id="reviews">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="eyebrow">// What customers say</span>
+          <h2>Straight from the waiting room</h2>
+        </div>
+      </div>
+      <div class="wrap" style="padding: 0">
+        <div class="review-track" id="reviewTrack">
+          <div class="review-card">
+            <div class="stars">★★★★★</div>
+            <p>
+              "Called with an issue with my van, they said they would have a
+              look if I bring it round. They came out straight away to help,
+              found the problem and reassured us everything was okay. Super
+              helpful, super friendly. Top lads."
+            </p>
+            <div class="who-row">
+              <img
+                src="https://i.pravatar.cc/80?img=13"
+                alt=""
+                loading="lazy"
+              />
+              <div class="who">
+                <b>Jack David</b><span>Verified customer</span>
+              </div>
+            </div>
+          </div>
+          <div class="review-card">
+            <div class="stars">★★★★</div>
+            <p>
+              "Different from other garages I'd tried — greeted with a smile,
+              kept informed on cost and timing throughout, car kept secure
+              overnight. Reassured me they don't rip off female customers, all
+              business is welcome. Would recommend for an MOT."
+            </p>
+            <div class="who-row">
+              <img
+                src="https://i.pravatar.cc/80?img=47"
+                alt=""
+                loading="lazy"
+              />
+              <div class="who">
+                <b>Pamela Walliams</b><span>Verified customer</span>
+              </div>
+            </div>
+          </div>
+          <div class="review-card">
+            <div class="stars">★★★★★</div>
+            <p>
+              "Very efficient and professional. Dropped off my car for MOT and
+              it was ready to collect within the hour. Will definitely be using
+              these guys again."
+            </p>
+            <div class="who-row">
+              <img
+                src="https://i.pravatar.cc/80?img=33"
+                alt=""
+                loading="lazy"
+              />
+              <div class="who">
+                <b>Jay Cee</b><span>Verified customer</span>
+              </div>
+            </div>
+          </div>
+          <div class="review-card">
+            <div class="stars">★★★★★</div>
+            <p>
+              "Naz and the brothers are well respected here. Professional, kind
+              and very respectful people. Thank you so much."
+            </p>
+            <div class="who-row">
+              <img
+                src="https://i.pravatar.cc/80?img=25"
+                alt=""
+                loading="lazy"
+              />
+              <div class="who">
+                <b>Nabila A</b><span>Verified customer</span>
+              </div>
+            </div>
+          </div>
+          <div class="review-card">
+            <div class="stars">★★★★★</div>
+            <p>
+              "Very nice and friendly staff. Highly professional and I recommend
+              it to every friend."
+            </p>
+            <div class="who-row">
+              <img
+                src="https://i.pravatar.cc/80?img=52"
+                alt=""
+                loading="lazy"
+              />
+              <div class="who">
+                <b>Muhammad Kamran</b><span>Verified customer</span>
+              </div>
+            </div>
+          </div>
+          <div class="review-card">
+            <div class="stars">★★★★★</div>
+            <p>
+              "Fantastic customer service, first impressions matter to me and
+              Naz's MOT is definitely the place to take your car."
+            </p>
+            <div class="who-row">
+              <img
+                src="https://i.pravatar.cc/80?img=44"
+                alt=""
+                loading="lazy"
+              />
+              <div class="who">
+                <b>Monika Sypka</b><span>Verified customer</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="scroll-hint">← scroll for more →</p>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="wrap contact-grid">
+        <div class="contact-info reveal">
+          <span class="eyebrow" style="color: var(--red)"
+            >// Book your MOT</span
+          >
+          <h2>Get in touch</h2>
+          <p class="lede">
+            Give us a ring to book in, or drop by — cash, card and contactless
+            all accepted.
+          </p>
+          <div class="contact-lines">
+            <div class="contact-line">
+              <span class="k">Phone</span
+              ><a href="tel:+441617404488">0161 740 4488</a>
+            </div>
+            <div class="contact-line">
+              <span class="k">Email</span
+              ><a href="mailto:naz212@live.co.uk">naz212@live.co.uk</a>
+            </div>
+            <div class="contact-line">
+              <span class="k">Message</span
+              ><a
+                href="https://www.facebook.com/nazsmot/"
+                target="_blank"
+                rel="noopener"
+                >Naz's M.O.T Garage</a
+              >
+            </div>
+          </div>
+          <a class="plate" href="tel:+441617404488"
+            >£30<span class="flag">MOT</span></a
+          >
+        </div>
+        <div class="contact-form-panel reveal">
+          <div class="inner">
+            <h3
+              style="
+                font-size: 1.6rem;
+                margin-bottom: 12px;
+                font-family: &quot;Oswald&quot;;
+                text-transform: uppercase;
+              "
+            >
+              Send a message
+            </h3>
+            <p
+              style="
+                color: var(--paper);
+                opacity: 0.85;
+                margin-bottom: 24px;
+                font-size: 0.95rem;
+              "
+            >
+              Fill out the form below and we'll get back to you as soon as
+              possible.
+            </p>
+            <form
+              action="https://formsubmit.co/israrahmadtech@gmail.com"
+              method="POST"
+              class="contact-form"
+            >
+              <input
+                type="hidden"
+                name="_subject"
+                value="New Submission from Naz's MOT Website!"
+              />
+              <input type="hidden" name="_captcha" value="false" />
+
+              <div
+                style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px"
+              >
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Your Name"
+                  required
+                />
+                <input type="tel" name="phone" placeholder="Phone Number" />
+              </div>
+              <input
+                type="email"
+                name="email"
+                placeholder="Email Address"
+                required
+              />
+              <textarea
+                name="message"
+                placeholder="How can we help?"
+                rows="4"
+                required
+              ></textarea>
+              <button type="submit" class="btn-submit">Send Message</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="wrap footer-flex">
+        <a class="brand" href="#top"
+          ><img src="logo2.png" alt="Naz's MOT Garage logo" />Naz's MOT
+          Garage</a
+        >
+        <div class="social-row">
+          <a
+            class="social-pill pill2"
+            href="https://www.facebook.com/nazsmot/"
+            target="_blank"
+            rel="noopener"
+            ><i class="fa-brands fa-facebook"></i
+          ></a>
+          <a
+            class="social-pill pill2"
+            href="https://www.instagram.com/nazsmotgarage/"
+            target="_blank"
+            rel="noopener"
+            ><i class="fa-brands fa-instagram"></i
+          ></a>
+          <a
+            class="social-pill pill2"
+            href="https://www.tiktok.com/@nazsmotgarage"
+            target="_blank"
+            rel="noopener"
+            ><i class="fa-brands fa-tiktok"></i
+          ></a>
+        </div>
+        <p>&copy; 2026 Naz's MOT Garage. DVSA approved testing station.</p>
+      </div>
+    </footer>
+
+    <script>
+      (function () {
+        // scroll-reveal with light stagger
+        var targets = document.querySelectorAll(
+          ".reveal, .gal-item, .service-cell",
+        );
+        targets.forEach(function (el, i) {
+          el.style.transitionDelay = (i % 4) * 0.08 + "s";
+        });
+        var io = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (entry) {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("in");
+                io.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.15 },
+        );
+        targets.forEach(function (el) {
+          io.observe(el);
+        });
+
+        // gallery filter chips
+        var chips = document.querySelectorAll(".chip");
+        var items = document.querySelectorAll(".gal-item");
+        chips.forEach(function (chip) {
+          chip.addEventListener("click", function () {
+            chips.forEach(function (c) {
+              c.classList.remove("active");
+            });
+            chip.classList.add("active");
+            var f = chip.dataset.filter;
+            items.forEach(function (it) {
+              var show = f === "all" || it.dataset.cat === f;
+              it.classList.toggle("hide", !show);
+            });
+          });
+        });
+
+        // reviews: fade the cards at the scroll edges
+        var track = document.getElementById("reviewTrack");
+        if (track) {
+          var cards = track.querySelectorAll(".review-card");
+          var thresholds = [];
+          for (var t = 0; t <= 1; t += 0.05) {
+            thresholds.push(t);
+          }
+          var rio = new IntersectionObserver(
+            function (entries) {
+              entries.forEach(function (entry) {
+                entry.target.style.opacity = Math.max(
+                  0.32,
+                  entry.intersectionRatio,
+                ).toFixed(2);
+              });
+            },
+            { root: track, threshold: thresholds },
+          );
+          cards.forEach(function (c) {
+            rio.observe(c);
+          });
+        }
+
+        // mobile menu toggle
+        var burger = document.querySelector(".navburger");
+        var header = document.querySelector("header");
+        if (burger && header) {
+          burger.addEventListener("click", function () {
+            header.classList.toggle("menu-active");
+          });
+
+          var navLinks = document.querySelectorAll(".navlinks a");
+          navLinks.forEach(function (link) {
+            link.addEventListener("click", function () {
+              header.classList.remove("menu-active");
+            });
+          });
+        }
+      })();
+    </script>
+  </body>
+</html>
